@@ -1,10 +1,12 @@
+import { useSelector } from 'react-redux';
 import TodoItem from './TodoItem';
 import './TodoList.scss';
-const TodoList = ({ showTodos, delBtn, updBtn, onMode, onSave }) => {
+const TodoList = () => {
+    const { showList } = useSelector((state) => state.todo);
     return (
         <ul className="TodoList">
-            {showTodos.map((item) => (
-                <TodoItem key={item.id} item={item} delBtn={delBtn} updBtn={updBtn} onMode={onMode} onSave={onSave} />
+            {showList.map((item) => (
+                <TodoItem key={item.id} item={item} />
             ))}
         </ul>
     );

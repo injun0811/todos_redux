@@ -1,6 +1,9 @@
 import { useRef, useState } from 'react';
 import './TodoInput.scss';
-const TodoInput = ({ addBtn }) => {
+import { addBtn } from '../../store/modules/todoSlice';
+import { useDispatch } from 'react-redux';
+const TodoInput = () => {
+    const dispatch = useDispatch();
     const [text, setText] = useState('');
     const textRef = useRef('');
     const chgInput = (e) => {
@@ -9,7 +12,7 @@ const TodoInput = ({ addBtn }) => {
     const onSub = (e) => {
         e.preventDefault();
         if (!text.trim()) return;
-        addBtn(text);
+        dispatch(addBtn(text));
         setText('');
         textRef.current.focus();
     };
